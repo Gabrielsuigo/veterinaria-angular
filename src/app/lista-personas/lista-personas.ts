@@ -19,6 +19,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatFormFieldModule
   ],
   templateUrl: './lista-personas.html',
+  styleUrl: './lista-personas.css',
 })
 export class PersonaList {
 
