@@ -1,0 +1,53 @@
+/* NAVBAR MODERNO */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  padding: 10px 30px;
+
+  background: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(10px);
+
+  color: #1e293b; /* gris oscuro elegante */
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+/* LOGO */
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* ESPACIO */
+.spacer {
+  flex: 1;
+}
+
+/* MENU */
+.menu {
+  display: flex;
+  gap: 15px;
+}
+
+/* LINKS */
+.menu a {
+  border-radius: 20px;
+  padding: 6px 16px;
+  transition: 0.3s;
+  color: white;
+}
+
+/* HOVER */
+.menu a:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+/* ACTIVO */
+.menu a.active {
+  background: white;
+  color: black;
+  font-weight: bold;
+}

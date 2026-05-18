@@ -1,0 +1,54 @@
+<mat-card>
+
+  <h2>🐾 Mascotas Registradas</h2>
+
+  <mat-form-field appearance="outline">
+
+    <mat-label>Buscar mascota</mat-label>
+
+    <input
+      matInput
+      [(ngModel)]="filtro"
+    >
+
+  </mat-form-field>
+
+  <div class="cards-mascotas">
+
+    <mat-card
+      class="pet-card"
+
+      *ngFor="let m of personaService.mascotas().filter(m =>
+        m.nombre.toLowerCase().includes(filtro.toLowerCase())
+      )"
+    >
+
+    <img
+  class="pet-image"
+  [src]="m.imagen"
+  alt="mascota"
+/>
+
+      <h3>🐶 {{ m.nombre }}</h3>
+
+      <p><strong>Especie:</strong> {{ m.especie }}</p>
+
+      <p><strong>Raza:</strong> {{ m.raza }}</p>
+
+      <p><strong>Edad:</strong> {{ m.edad }} años</p>
+
+      <p><strong>Dueño:</strong> {{ m.duenio }}</p>
+
+      <button
+        mat-raised-button
+        color="warn"
+        (click)="eliminar(m.id)"
+      >
+        Eliminar
+      </button>
+
+    </mat-card>
+
+  </div>
+
+</mat-card>
