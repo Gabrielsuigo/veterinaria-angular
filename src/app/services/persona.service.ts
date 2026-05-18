@@ -6,6 +6,7 @@ export interface Mascota {
   especie: string;
   raza: string;
   edad: number;
+  
   duenio: string;
   imagen: string;
 }
@@ -16,10 +17,12 @@ export interface Mascota {
 export class PersonaService {
 
   mascotas = signal<Mascota[]>(this.cargar());
+  mascotaEditando = signal<Mascota | null>(null);
 
   private guardar(data: Mascota[]) {
     localStorage.setItem('mascotas', JSON.stringify(data));
   }
+
 
   private cargar(): Mascota[] {
     const data = localStorage.getItem('mascotas');

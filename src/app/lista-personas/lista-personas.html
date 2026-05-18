@@ -29,23 +29,75 @@
   alt="mascota"
 />
 
-      <h3>🐶 {{ m.nombre }}</h3>
+    <div *ngIf="mascotaEditandoId === m.id; else vistaNormal">
 
-      <p><strong>Especie:</strong> {{ m.especie }}</p>
+  <mat-form-field appearance="outline">
+    <mat-label>Nombre</mat-label>
+    <input matInput [(ngModel)]="m.nombre">
+  </mat-form-field>
 
-      <p><strong>Raza:</strong> {{ m.raza }}</p>
+  <mat-form-field appearance="outline">
+    <mat-label>Especie</mat-label>
+    <input matInput [(ngModel)]="m.especie">
+  </mat-form-field>
 
-      <p><strong>Edad:</strong> {{ m.edad }} años</p>
+  <mat-form-field appearance="outline">
+    <mat-label>Raza</mat-label>
+    <input matInput [(ngModel)]="m.raza">
+  </mat-form-field>
 
-      <p><strong>Dueño:</strong> {{ m.duenio }}</p>
+  <mat-form-field appearance="outline">
+    <mat-label>Edad</mat-label>
+    <input matInput type="number" [(ngModel)]="m.edad">
+  </mat-form-field>
 
-      <button
-        mat-raised-button
-        color="warn"
-        (click)="eliminar(m.id)"
-      >
-        Eliminar
-      </button>
+  <mat-form-field appearance="outline">
+    <mat-label>Dueño</mat-label>
+    <input matInput [(ngModel)]="m.duenio">
+  </mat-form-field>
+
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="guardar(m)"
+  >
+    Guardar
+  </button>
+
+</div>
+
+<ng-template #vistaNormal>
+
+  <h3>🐶 {{ m.nombre }}</h3>
+
+  <p><strong>Especie:</strong> {{ m.especie }}</p>
+
+  <p><strong>Raza:</strong> {{ m.raza }}</p>
+
+  <p><strong>Edad:</strong> {{ m.edad }} años</p>
+
+  <p><strong>Dueño:</strong> {{ m.duenio }}</p>
+
+</ng-template>
+   <div class="acciones">
+
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="editar(m)"
+  >
+    Editar
+  </button>
+
+  <button
+    mat-raised-button
+    color="warn"
+    (click)="eliminar(m.id)"
+  >
+    Eliminar
+  </button>
+
+</div>
 
     </mat-card>
 
