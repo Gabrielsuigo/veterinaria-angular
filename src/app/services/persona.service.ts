@@ -9,6 +9,12 @@ export interface Mascota {
   
   duenio: string;
   imagen: string;
+
+  vacunas: {
+  nombre: string;
+  fecha: string;
+}[];
+
 }
 
 @Injectable({
@@ -72,4 +78,41 @@ export class PersonaService {
       return nueva;
     });
   }
+
+  agregarVacuna(
+
+  id: number,
+
+  vacuna: {
+    nombre: string;
+    fecha: string;
+  }
+
+) {
+
+  this.mascotas.update(lista => {
+
+    const nueva = lista.map(m =>
+
+      m.id === id
+
+        ? {
+            ...m,
+            vacunas: [
+              ...(m.vacunas || []),
+              vacuna
+            ]
+          }
+
+        : m
+
+    );
+
+    this.guardar(nueva);
+
+    return nueva;
+
+  });
+
+}
 }

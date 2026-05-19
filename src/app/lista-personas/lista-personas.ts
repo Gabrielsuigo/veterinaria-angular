@@ -46,6 +46,31 @@ export class PersonaList {
 
   }
 
+  agregarVacuna(
+
+  id: number,
+
+  nombre: string,
+
+  fecha: string
+
+) {
+
+  if (!nombre || !fecha) return;
+
+  this.personaService.agregarVacuna(
+
+    id,
+
+    {
+      nombre,
+      fecha
+    }
+
+  );
+
+}
+
   eliminar(id: number) {
 
     this.personaService.eliminar(id);

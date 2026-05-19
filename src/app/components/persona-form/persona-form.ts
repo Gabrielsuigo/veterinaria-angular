@@ -107,6 +107,8 @@ constructor(private personaService: PersonaService) {
     duenio: this.duenio,
     imagen: this.imagen,
 
+    vacunas: [],
+
   };
 
   if (this.editando) {

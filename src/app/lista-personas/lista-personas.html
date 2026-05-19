@@ -78,7 +78,61 @@
 
   <p><strong>Dueño:</strong> {{ m.duenio }}</p>
 
+  <div class="vacunas">
+
+  <h4>💉 Vacunas</h4>
+
+<div *ngIf="m.vacunas && m.vacunas.length > 0; else sinVacunas">
+
+    <p *ngFor="let v of m.vacunas">
+
+      {{ v.nombre }} - {{ v.fecha }}
+
+    </p>
+
+  </div>
+
+  <ng-template #sinVacunas>
+
+    <p>No tiene vacunas registradas</p>
+
+  </ng-template>
+
+</div>
+
 </ng-template>
+
+<div class="vacuna-form">
+
+  <input
+    #nombreVacuna
+    placeholder="Vacuna"
+  >
+
+  <input
+    #fechaVacuna
+    type="date"
+  >
+
+  <button
+
+    mat-raised-button
+    color="accent"
+
+    (click)="agregarVacuna(
+      m.id,
+      nombreVacuna.value,
+      fechaVacuna.value
+    )"
+
+  >
+
+    Agregar vacuna
+
+  </button>
+
+</div>
+
    <div class="acciones">
 
   <button
