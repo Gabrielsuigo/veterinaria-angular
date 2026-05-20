@@ -16,84 +16,114 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatCardModule,
     MatButtonModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
   ],
   templateUrl: './lista-personas.html',
   styleUrl: './lista-personas.css',
 })
 export class PersonaList {
-
   filtro = '';
 
   mascotaEditandoId: number | null = null;
-  
 
   constructor(public personaService: PersonaService) {}
 
   editar(mascota: any) {
-
     this.mascotaEditandoId = mascota.id;
-
   }
 
   guardar(mascota: any) {
-
-    this.personaService.editar(
-      mascota.id,
-      mascota
-    );
+    this.personaService.editar(mascota.id, mascota);
 
     this.mascotaEditandoId = null;
-
   }
 
   agregarVacuna(
+    id: number,
 
-  id: number,
+    nombre: string,
 
-  nombre: string,
+    fecha: string,
+  ) {
+    if (!nombre || !fecha) return;
 
-  fecha: string
+    this.personaService.agregarVacuna(
+      id,
 
-) {
-
-  if (!nombre || !fecha) return;
-
-  this.personaService.agregarVacuna(
-
-    id,
-
-    {
-      nombre,
-      fecha
-    }
-
-  );
-
-}
+      {
+        nombre,
+        fecha,
+      },
+    );
+  }
 
   eliminar(id: number) {
-
     this.personaService.eliminar(id);
-
   }
 
   eliminarVacuna(
+    mascotaId: number,
 
-  mascotaId: number,
+    index: number,
+  ) {
+    this.personaService.eliminarVacuna(
+      mascotaId,
 
-  index: number
+      index,
+    );
+  }
+  confirmarEliminarVacuna(
+    mascotaId: number,
 
-) {
+    index: number,
+  ) {
+    const confirmar = confirm('¿Seguro que querés eliminar esta vacuna?');
 
-  this.personaService.eliminarVacuna(
+    if (confirmar) {
+      this.eliminarVacuna(
+        mascotaId,
 
-    mascotaId,
+        index,
+      );
+    }
+  }
+  agregarConsulta(
+    id: number,
 
-    index
+    motivo: string,
 
-  );
+    diagnostico: string,
 
-}
+    peso: string,
 
+    fecha: string,
+  ) {
+    if (!motivo || !diagnostico || !peso || !fecha) return;
+
+    this.personaService.agregarConsulta(
+      id,
+
+      {
+        motivo,
+
+        diagnostico,
+
+        peso: Number(peso),
+
+        fecha,
+      },
+    );
+  }
+
+  eliminarConsulta(
+    mascotaId: number,
+
+    index: number,
+  ) {
+    this.personaService.eliminarConsulta(
+      mascotaId,
+
+      index,
+    );
+  }
 }
