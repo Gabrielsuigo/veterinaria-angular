@@ -1,9 +1,14 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { PersonaService } from '../../services/persona.service';
 
 @Component({
   selector: 'app-historial',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './historial.html',
-  styleUrl: './historial.css',
+  styleUrls: ['./historial.css'],
 })
-export class Historial {}
+export class Historial {
+  constructor(public personaService: PersonaService) {}
+}

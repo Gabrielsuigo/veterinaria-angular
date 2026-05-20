@@ -262,3 +262,34 @@
 .alertas {
   background: linear-gradient(135deg, #ff416c, #ff4b2b);
 }
+
+.proxima-vacuna {
+  margin-top: 12px;
+
+  padding: 10px;
+
+  border-radius: 12px;
+
+  background: linear-gradient(135deg, #fff3cd, #ffe08a);
+
+  color: #7c5700;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+}
+.proxima-vacuna {
+  color: #ef4444;
+
+  font-weight: 600;
+
+  font-size: 12px;
+}

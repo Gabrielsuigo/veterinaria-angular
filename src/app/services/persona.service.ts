@@ -3,6 +3,7 @@ import { Injectable, signal } from '@angular/core';
 export interface Vacuna {
   nombre: string;
   fecha: string;
+  proximaDosis?: string;
 }
 
 export interface Consulta {
@@ -38,6 +39,14 @@ export class PersonaService {
   private cargar(): Mascota[] {
     const data = localStorage.getItem('mascotas');
     return data ? JSON.parse(data) : [];
+  }
+
+  private calcularProximaDosis(fecha: string): string {
+    const fechaVacuna = new Date(fecha);
+
+    fechaVacuna.setMonth(fechaVacuna.getMonth() + 12);
+
+    return fechaVacuna.toISOString().split('T')[0];
   }
 
   agregar(mascota: Omit<Mascota, 'id'>) {
@@ -84,7 +93,15 @@ export class PersonaService {
         m.id === id
           ? {
               ...m,
-              vacunas: [...(m.vacunas || []), vacuna],
+              vacunas: [
+                ...(m.vacunas || []),
+
+                {
+                  ...vacuna,
+
+                  proximaDosis: this.calcularProximaDosis(vacuna.fecha),
+                },
+              ],
             }
           : m,
       );

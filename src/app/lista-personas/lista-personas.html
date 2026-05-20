@@ -133,6 +133,13 @@
           <strong>Dueño:</strong>
           {{ m.duenio }}
         </p>
+        <div class="proxima-vacuna">
+          <span> ⏰ Próxima vacuna: </span>
+
+          <strong>
+            {{ m.vacunas.length > 0 ? 'En 30 días' : 'Pendiente' }}
+          </strong>
+        </div>
 
         <div class="medical-section">
           <h3 class="medical-title">🩺 Historial Médico</h3>
@@ -146,6 +153,10 @@
                   <p>💉 {{ v.nombre }}</p>
 
                   <span> 📅 {{ v.fecha }} </span>
+                  <span class="proxima-vacuna">
+                    🔔 Próxima dosis:
+                    {{ v.proximaDosis }}
+                  </span>
                 </div>
 
                 <button mat-mini-button color="warn" (click)="confirmarEliminarVacuna(m.id, i)">

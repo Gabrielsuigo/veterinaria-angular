@@ -1,17 +1,19 @@
-<div class="page">
+<div class="medical-card">
+  <h2 class="medical-home-title">💉 Historial Médico</h2>
 
-  <h1>💉 Historial Médico</h1>
+  <div class="medical-home-item" *ngFor="let mascota of personaService.mascotas().slice(0, 2)">
+    <h3>🐶 {{ mascota.nombre }}</h3>
 
-  <div class="history-card">
+    <p *ngIf="mascota.vacunas.length > 0">
+      ✔ Última vacuna:
 
-    <h2>🐶 India</h2>
+      {{ mascota.vacunas[mascota.vacunas.length - 1].nombre }}
+    </p>
 
-    <p>✔ Vacuna antirrábica</p>
+    <p *ngIf="mascota.consultas.length > 0">
+      🩺 Última consulta:
 
-    <p>✔ Desparasitación</p>
-
-    <p>✔ Control general</p>
-
+      {{ mascota.consultas[mascota.consultas.length - 1].motivo }}
+    </p>
   </div>
-
 </div>
