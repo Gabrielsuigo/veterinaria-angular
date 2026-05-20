@@ -1,6 +1,63 @@
 <mat-card>
   <h2>🐾 Mascotas Registradas</h2>
 
+  <div class="dashboard">
+    <div class="dashboard-card mascotas">
+      <h3>
+        {{ personaService.mascotas().length }}
+      </h3>
+
+      <p>Mascotas</p>
+    </div>
+
+    <div class="dashboard-card dashboard-vacunas">
+      <h3>
+        {{
+          personaService
+            .mascotas()
+
+            .reduce(
+              (total, m) => total + m.vacunas.length,
+
+              0
+            )
+        }}
+      </h3>
+
+      <p>Vacunas</p>
+    </div>
+
+    <div class="dashboard-card consultas">
+      <h3>
+        {{
+          personaService
+            .mascotas()
+
+            .reduce(
+              (total, m) => total + m.consultas.length,
+
+              0
+            )
+        }}
+      </h3>
+
+      <p>Consultas</p>
+    </div>
+
+    <div class="dashboard-card alertas">
+      <h3>
+        {{
+          personaService
+            .mascotas()
+
+            .filter((m) => m.vacunas.length === 0).length
+        }}
+      </h3>
+
+      <p>Sin vacunas</p>
+    </div>
+  </div>
+
   <mat-form-field appearance="outline">
     <mat-label>Buscar mascota</mat-label>
 

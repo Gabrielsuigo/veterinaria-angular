@@ -1,9 +1,5 @@
-import {
-  Component,
-  effect,
-  inject,
-  Injector
-} from '@angular/core';import { FormsModule } from '@angular/forms';
+import { Component, effect, inject, Injector } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { PersonaService } from '../../services/persona.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -20,13 +16,12 @@ import { CommonModule } from '@angular/common';
     MatInputModule,
     MatFormFieldModule,
     MatCardModule,
-    CommonModule
+    CommonModule,
   ],
   templateUrl: './persona-form.html',
   styleUrl: './persona-form.css',
 })
 export class PersonaForm {
-
   nombre = '';
   editando = false;
   especie = '';
@@ -38,31 +33,23 @@ export class PersonaForm {
   mascotaId: number | null = null;
   injector = inject(Injector);
 
-constructor(private personaService: PersonaService) {
+  constructor(private personaService: PersonaService) {
+    effect(() => {
+      const mascota = this.personaService.mascotaEditando();
 
-  effect(() => {
+      if (mascota) {
+        this.editando = true;
 
-    const mascota =
-      this.personaService.mascotaEditando();
-
-    if (mascota) {
-
-      this.editando = true;
-
-      this.nombre = mascota.nombre;
-      this.especie = mascota.especie;
-      this.raza = mascota.raza;
-      this.edad = mascota.edad;
-      this.duenio = mascota.duenio;
-      this.imagen = mascota.imagen;
-
-    }
-
-  });
-
-}
+        this.nombre = mascota.nombre;
+        this.especie = mascota.especie;
+        this.raza = mascota.raza;
+        this.edad = mascota.edad;
+        this.duenio = mascota.duenio;
+        this.imagen = mascota.imagen;
+      }
+    });
+  }
   seleccionarImagen(event: any) {
-
     const file = event.target.files[0];
 
     if (!file) return;
@@ -70,17 +57,13 @@ constructor(private personaService: PersonaService) {
     const reader = new FileReader();
 
     reader.onload = () => {
-
       this.imagen = reader.result as string;
-
     };
 
     reader.readAsDataURL(file);
-
   }
 
   cargarMascota(mascota: any) {
-
     this.editando = true;
 
     this.mascotaId = mascota.id;
@@ -91,60 +74,42 @@ constructor(private personaService: PersonaService) {
     this.edad = mascota.edad;
     this.duenio = mascota.duenio;
     this.imagen = mascota.imagen;
-
   }
 
- agregar() {
+  agregar() {
+    if (!this.nombre || !this.edad) return;
 
-  if (!this.nombre || !this.edad) return;
+    const mascota = {
+      nombre: this.nombre,
+      edad: this.edad,
+      especie: this.especie,
+      raza: this.raza,
+      duenio: this.duenio,
+      imagen: this.imagen,
 
-  const mascota = {
+      vacunas: [],
+      consultas: [],
+    };
 
-    nombre: this.nombre,
-    edad: this.edad,
-    especie: this.especie,
-    raza: this.raza,
-    duenio: this.duenio,
-    imagen: this.imagen,
+    if (this.editando) {
+      const mascotaActual = this.personaService.mascotaEditando();
 
-    vacunas: [],
-    consultas: [],
+      if (mascotaActual) {
+        this.personaService.editar(mascotaActual.id, mascota);
+      }
 
-  };
+      this.editando = false;
 
-  if (this.editando) {
-
-    const mascotaActual =
-      this.personaService.mascotaEditando();
-
-    if (mascotaActual) {
-
-      this.personaService.editar(
-        mascotaActual.id,
-        mascota
-      );
-
+      this.personaService.mascotaEditando.set(null);
+    } else {
+      this.personaService.agregar(mascota);
     }
 
-    this.editando = false;
-
-    this.personaService
-      .mascotaEditando
-      .set(null);
-
-  } else {
-
-    this.personaService.agregar(mascota);
-
+    this.nombre = '';
+    this.especie = '';
+    this.raza = '';
+    this.edad = 0;
+    this.duenio = '';
+    this.imagen = '';
   }
-
-  this.nombre = '';
-  this.especie = '';
-  this.raza = '';
-  this.edad = 0;
-  this.duenio = '';
-  this.imagen = '';
-
-}
-
 }
