@@ -41,13 +41,18 @@
   }
 }
 
-.cards {
+.cards-home {
+
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(250px, 1fr));
+
   gap: 20px;
+
 }
 
-.cards mat-card {
+.cards-home .glass-card {
   padding: 20px;
   border-radius: 16px;
   background: rgba(255,255,255,0.15);
@@ -56,7 +61,23 @@
   transition: 0.3s;
 }
 
-.cards mat-card:hover {
+.cards-home .glass-card:hover {
   transform: translateY(-5px) scale(1.03);
+}
+
+.glass-card {
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+
+}
+
+.glass-card:hover {
+
+  transform: translateY(-8px);
+
+  scale: 1.02;
+
 }
 

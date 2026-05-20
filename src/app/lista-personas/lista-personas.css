@@ -66,3 +66,105 @@
   margin-top: 15px;
 
 }
+
+.medical-section {
+
+  margin-top: 20px;
+
+  padding: 15px;
+
+  border-radius: 16px;
+
+  background: #f8f9fc;
+
+  border: 1px solid #e2e8f0;
+
+}
+
+.medical-title {
+
+  margin-bottom: 15px;
+
+  font-size: 18px;
+
+  font-weight: 700;
+
+  color: #4b5563;
+
+}
+
+.vacunas p {
+
+  margin: 6px 0;
+
+  padding: 8px 12px;
+
+  border-radius: 10px;
+
+  background: white;
+
+  border: 1px solid #e5e7eb;
+
+  font-size: 14px;
+
+}
+
+.vacuna-form {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+
+  margin-top: 15px;
+
+}
+
+.vacuna-form input {
+
+  padding: 10px;
+
+  border-radius: 10px;
+
+  border: 1px solid #d1d5db;
+
+  font-size: 14px;
+
+}
+
+.vacuna-item {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  padding: 10px;
+
+  border-radius: 12px;
+
+  background: white;
+
+  margin-bottom: 10px;
+
+  border: 1px solid #e5e7eb;
+
+}
+
+.vacuna-info p {
+
+  margin: 0;
+
+  font-weight: 600;
+
+}
+
+.vacuna-info span {
+
+  font-size: 13px;
+
+  color: gray;
+
+}

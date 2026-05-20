@@ -1,27 +1,31 @@
 import { Injectable, signal } from '@angular/core';
 
+export interface Vacuna {
+  nombre: string;
+  fecha: string;
+}
+
+export interface Consulta {
+  motivo: string;
+  fecha: string;
+}
+
 export interface Mascota {
   id: number;
   nombre: string;
   especie: string;
   raza: string;
   edad: number;
-  
   duenio: string;
   imagen: string;
-
-  vacunas: {
-  nombre: string;
-  fecha: string;
-}[];
-
+  vacunas: Vacuna[];
+  consultas: Consulta[];
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class PersonaService {
-
   mascotas = signal<Mascota[]>(this.cargar());
   mascotaEditando = signal<Mascota | null>(null);
 
@@ -29,21 +33,21 @@ export class PersonaService {
     localStorage.setItem('mascotas', JSON.stringify(data));
   }
 
-
   private cargar(): Mascota[] {
     const data = localStorage.getItem('mascotas');
     return data ? JSON.parse(data) : [];
   }
 
   agregar(mascota: Omit<Mascota, 'id'>) {
-    this.mascotas.update(lista => {
-
+    this.mascotas.update((lista) => {
       const nueva = [
         ...lista,
         {
           ...mascota,
-          id: Date.now()
-        }
+          id: Date.now(),
+          vacunas: [],
+          consultas: [],
+        },
       ];
 
       this.guardar(nueva);
@@ -53,9 +57,8 @@ export class PersonaService {
   }
 
   eliminar(id: number) {
-    this.mascotas.update(lista => {
-
-      const nueva = lista.filter(m => m.id !== id);
+    this.mascotas.update((lista) => {
+      const nueva = lista.filter((m) => m.id !== id);
 
       this.guardar(nueva);
 
@@ -64,13 +67,45 @@ export class PersonaService {
   }
 
   editar(id: number, datos: Partial<Mascota>) {
+    this.mascotas.update((lista) => {
+      const nueva = lista.map((m) => (m.id === id ? { ...m, ...datos } : m));
 
-    this.mascotas.update(lista => {
+      this.guardar(nueva);
 
-      const nueva = lista.map(m =>
+      return nueva;
+    });
+  }
+
+  agregarVacuna(id: number, vacuna: Vacuna) {
+    this.mascotas.update((lista) => {
+      const nueva = lista.map((m) =>
         m.id === id
-          ? { ...m, ...datos }
-          : m
+          ? {
+              ...m,
+              vacunas: [...(m.vacunas || []), vacuna],
+            }
+          : m,
+      );
+
+      this.guardar(nueva);
+
+      return nueva;
+    });
+  }
+  agregarConsulta(
+    id: number,
+
+    consulta: Consulta,
+  ) {
+    this.mascotas.update((lista) => {
+      const nueva = lista.map((m) =>
+        m.id === id
+          ? {
+              ...m,
+
+              consultas: [...(m.consultas || []), consulta],
+            }
+          : m,
       );
 
       this.guardar(nueva);
@@ -79,40 +114,46 @@ export class PersonaService {
     });
   }
 
-  agregarVacuna(
+  eliminarVacuna(
+    mascotaId: number,
 
-  id: number,
+    index: number,
+  ) {
+    this.mascotas.update((lista) => {
+      const nueva = lista.map((m) =>
+        m.id === mascotaId
+          ? {
+              ...m,
 
-  vacuna: {
-    nombre: string;
-    fecha: string;
+              vacunas: m.vacunas.filter((_, i) => i !== index),
+            }
+          : m,
+      );
+
+      this.guardar(nueva);
+
+      return nueva;
+    });
   }
+  eliminarConsulta(
+    mascotaId: number,
 
-) {
+    index: number,
+  ) {
+    this.mascotas.update((lista) => {
+      const nueva = lista.map((m) =>
+        m.id === mascotaId
+          ? {
+              ...m,
 
-  this.mascotas.update(lista => {
+              consultas: m.consultas.filter((_, i) => i !== index),
+            }
+          : m,
+      );
 
-    const nueva = lista.map(m =>
+      this.guardar(nueva);
 
-      m.id === id
-
-        ? {
-            ...m,
-            vacunas: [
-              ...(m.vacunas || []),
-              vacuna
-            ]
-          }
-
-        : m
-
-    );
-
-    this.guardar(nueva);
-
-    return nueva;
-
-  });
-
-}
+      return nueva;
+    });
+  }
 }

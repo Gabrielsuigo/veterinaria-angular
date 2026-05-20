@@ -23,135 +23,237 @@
       )"
     >
 
-    <img
-  class="pet-image"
-  [src]="m.imagen"
-  alt="mascota"
-/>
+      <img
+        class="pet-image"
+        [src]="m.imagen"
+        alt="mascota"
+      />
 
-    <div *ngIf="mascotaEditandoId === m.id; else vistaNormal">
 
-  <mat-form-field appearance="outline">
-    <mat-label>Nombre</mat-label>
-    <input matInput [(ngModel)]="m.nombre">
-  </mat-form-field>
+      <div *ngIf="mascotaEditandoId === m.id; else vistaNormal">
 
-  <mat-form-field appearance="outline">
-    <mat-label>Especie</mat-label>
-    <input matInput [(ngModel)]="m.especie">
-  </mat-form-field>
+        <mat-form-field appearance="outline">
 
-  <mat-form-field appearance="outline">
-    <mat-label>Raza</mat-label>
-    <input matInput [(ngModel)]="m.raza">
-  </mat-form-field>
+          <mat-label>Nombre</mat-label>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Edad</mat-label>
-    <input matInput type="number" [(ngModel)]="m.edad">
-  </mat-form-field>
+          <input matInput [(ngModel)]="m.nombre">
 
-  <mat-form-field appearance="outline">
-    <mat-label>Dueño</mat-label>
-    <input matInput [(ngModel)]="m.duenio">
-  </mat-form-field>
+        </mat-form-field>
 
-  <button
-    mat-raised-button
-    color="primary"
-    (click)="guardar(m)"
-  >
-    Guardar
-  </button>
+        <mat-form-field appearance="outline">
 
-</div>
+          <mat-label>Especie</mat-label>
 
-<ng-template #vistaNormal>
+          <input matInput [(ngModel)]="m.especie">
 
-  <h3>🐶 {{ m.nombre }}</h3>
+        </mat-form-field>
 
-  <p><strong>Especie:</strong> {{ m.especie }}</p>
+        <mat-form-field appearance="outline">
 
-  <p><strong>Raza:</strong> {{ m.raza }}</p>
+          <mat-label>Raza</mat-label>
 
-  <p><strong>Edad:</strong> {{ m.edad }} años</p>
+          <input matInput [(ngModel)]="m.raza">
 
-  <p><strong>Dueño:</strong> {{ m.duenio }}</p>
+        </mat-form-field>
 
-  <div class="vacunas">
+        <mat-form-field appearance="outline">
 
-  <h4>💉 Vacunas</h4>
+          <mat-label>Edad</mat-label>
 
-<div *ngIf="m.vacunas && m.vacunas.length > 0; else sinVacunas">
+          <input
+            matInput
+            type="number"
+            [(ngModel)]="m.edad"
+          >
 
-    <p *ngFor="let v of m.vacunas">
+        </mat-form-field>
 
-      {{ v.nombre }} - {{ v.fecha }}
+        <mat-form-field appearance="outline">
 
-    </p>
+          <mat-label>Dueño</mat-label>
 
-  </div>
+          <input matInput [(ngModel)]="m.duenio">
 
-  <ng-template #sinVacunas>
+        </mat-form-field>
 
-    <p>No tiene vacunas registradas</p>
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="guardar(m)"
+        >
 
-  </ng-template>
+          Guardar
 
-</div>
+        </button>
 
-</ng-template>
+      </div>
 
-<div class="vacuna-form">
+      <!-- VISTA NORMAL -->
 
-  <input
-    #nombreVacuna
-    placeholder="Vacuna"
-  >
+      <ng-template #vistaNormal>
 
-  <input
-    #fechaVacuna
-    type="date"
-  >
+        <h3>🐶 {{ m.nombre }}</h3>
 
-  <button
+        <p>
 
-    mat-raised-button
-    color="accent"
+          <strong>Especie:</strong>
+          {{ m.especie }}
 
-    (click)="agregarVacuna(
-      m.id,
-      nombreVacuna.value,
-      fechaVacuna.value
-    )"
+        </p>
 
-  >
+        <p>
 
-    Agregar vacuna
+          <strong>Raza:</strong>
+          {{ m.raza }}
 
-  </button>
+        </p>
 
-</div>
+        <p>
 
-   <div class="acciones">
+          <strong>Edad:</strong>
+          {{ m.edad }} años
 
-  <button
-    mat-raised-button
-    color="primary"
-    (click)="editar(m)"
-  >
-    Editar
-  </button>
+        </p>
 
-  <button
-    mat-raised-button
-    color="warn"
-    (click)="eliminar(m.id)"
-  >
-    Eliminar
-  </button>
+        <p>
 
-</div>
+          <strong>Dueño:</strong>
+          {{ m.duenio }}
+
+        </p>
+
+
+        <div class="medical-section">
+
+          <h3 class="medical-title">
+
+            🩺 Historial Médico
+
+          </h3>
+
+          <div class="vacunas">
+
+            <h4>💉 Vacunas</h4>
+
+            <div
+              *ngIf="
+                m.vacunas &&
+                m.vacunas.length > 0;
+                else sinVacunas
+              "
+            >
+
+              <div
+                class="vacuna-item"
+
+                *ngFor="
+                  let v of m.vacunas;
+                  let i = index
+                "
+              >
+
+                <div class="vacuna-info">
+
+                  <p>
+
+                    💉 {{ v.nombre }}
+
+                  </p>
+
+                  <span>
+
+                    📅 {{ v.fecha }}
+
+                  </span>
+
+                </div>
+
+                <button
+                  mat-mini-button
+                  color="warn"
+
+                  (click)="eliminarVacuna(m.id, i)"
+                >
+
+                  ✖
+
+                </button>
+
+              </div>
+
+            </div>
+
+            <ng-template #sinVacunas>
+
+              <p>
+
+                No tiene vacunas registradas
+
+              </p>
+
+            </ng-template>
+
+          </div>
+
+          <!-- FORM VACUNAS -->
+
+          <div class="vacuna-form">
+
+            <input
+              #nombreVacuna
+              placeholder="Vacuna"
+            >
+
+            <input
+              #fechaVacuna
+              type="date"
+            >
+
+            <button
+              mat-raised-button
+              color="accent"
+
+              (click)="agregarVacuna(
+                m.id,
+                nombreVacuna.value,
+                fechaVacuna.value
+              )"
+            >
+
+              Agregar vacuna
+
+            </button>
+
+          </div>
+
+        </div>
+
+      </ng-template>
+
+
+      <div class="acciones">
+
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="editar(m)"
+        >
+
+          Editar
+
+        </button>
+
+        <button
+          mat-raised-button
+          color="warn"
+          (click)="eliminar(m.id)"
+        >
+
+          Eliminar
+
+        </button>
+
+      </div>
 
     </mat-card>
 

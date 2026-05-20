@@ -108,6 +108,7 @@ constructor(private personaService: PersonaService) {
     imagen: this.imagen,
 
     vacunas: [],
+    consultas: [],
 
   };
 

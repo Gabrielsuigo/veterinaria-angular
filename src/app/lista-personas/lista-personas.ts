@@ -26,6 +26,7 @@ export class PersonaList {
   filtro = '';
 
   mascotaEditandoId: number | null = null;
+  
 
   constructor(public personaService: PersonaService) {}
 
@@ -76,5 +77,23 @@ export class PersonaList {
     this.personaService.eliminar(id);
 
   }
+
+  eliminarVacuna(
+
+  mascotaId: number,
+
+  index: number
+
+) {
+
+  this.personaService.eliminarVacuna(
+
+    mascotaId,
+
+    index
+
+  );
+
+}
 
 }
