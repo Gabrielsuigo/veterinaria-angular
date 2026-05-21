@@ -133,6 +133,7 @@
           <strong>Dueño:</strong>
           {{ m.duenio }}
         </p>
+
         <div class="proxima-vacuna">
           <span> ⏰ Próxima vacuna: </span>
 
@@ -141,36 +142,45 @@
           </strong>
         </div>
 
-        <div class="medical-section">
-          <h3 class="medical-title">🩺 Historial Médico</h3>
+        <!-- BOTONES -->
 
-          <div class="vacunas">
-            <h4>💉 Vacunas</h4>
+        <div class="botones-panel">
+          <button mat-raised-button color="accent" (click)="toggleHistorial(m.id)">
+            🩺 Historial Médico
+          </button>
 
-            <div *ngIf="m.vacunas && m.vacunas.length > 0; else sinVacunas">
-              <div class="vacuna-item" *ngFor="let v of m.vacunas; let i = index">
-                <div class="vacuna-info">
-                  <p>💉 {{ v.nombre }}</p>
+          <button mat-raised-button color="primary" (click)="toggleConsultas(m.id)">
+            📋 Consultas
+          </button>
+        </div>
 
-                  <span> 📅 {{ v.fecha }} </span>
-                  <span class="proxima-vacuna">
-                    🔔 Próxima dosis:
-                    {{ v.proximaDosis }}
-                  </span>
-                </div>
+        <!-- HISTORIAL -->
 
-                <button mat-mini-button color="warn" (click)="confirmarEliminarVacuna(m.id, i)">
-                  ✖
-                </button>
+        <div class="medical-section" *ngIf="historialAbiertoId === m.id">
+          <h3 class="medical-title">💉 Vacunas</h3>
+
+          <div *ngIf="m.vacunas && m.vacunas.length > 0; else sinVacunas">
+            <div class="vacuna-item" *ngFor="let v of m.vacunas; let i = index">
+              <div class="vacuna-info">
+                <p>💉 {{ v.nombre }}</p>
+
+                <span> 📅 {{ v.fecha }} </span>
+
+                <span class="proxima-vacuna">
+                  🔔 Próxima dosis:
+                  {{ v.proximaDosis }}
+                </span>
               </div>
-            </div>
 
-            <ng-template #sinVacunas>
-              <p>No tiene vacunas registradas</p>
-            </ng-template>
+              <button mat-mini-button color="warn" (click)="confirmarEliminarVacuna(m.id, i)">
+                ✖
+              </button>
+            </div>
           </div>
 
-          <!-- FORM VACUNAS -->
+          <ng-template #sinVacunas>
+            <p>No tiene vacunas registradas</p>
+          </ng-template>
 
           <div class="vacuna-form">
             <input #nombreVacuna placeholder="Vacuna" />
@@ -184,57 +194,58 @@
             >
               Agregar vacuna
             </button>
-            <div class="consultas-section">
-              <h4>🩺 Consultas Médicas</h4>
+          </div>
+        </div>
 
-              <div *ngIf="m.consultas && m.consultas.length > 0; else sinConsultas">
-                <div class="consulta-item" *ngFor="let c of m.consultas; let i = index">
-                  <div class="consulta-info">
-                    <p>🩺 {{ c.motivo }}</p>
+        <!-- CONSULTAS -->
 
-                    <span> 📋 {{ c.diagnostico }} </span>
+        <div class="medical-section" *ngIf="consultasAbiertasId === m.id">
+          <h3 class="medical-title">🩺 Consultas Médicas</h3>
 
-                    <span> ⚖ {{ c.peso }} kg </span>
+          <div *ngIf="m.consultas && m.consultas.length > 0; else sinConsultas">
+            <div class="consulta-item" *ngFor="let c of m.consultas; let i = index">
+              <div class="consulta-info">
+                <p>🩺 {{ c.motivo }}</p>
 
-                    <span> 📅 {{ c.fecha }} </span>
-                  </div>
+                <span> 📋 {{ c.diagnostico }} </span>
 
-                  <button mat-mini-button color="warn" (click)="eliminarConsulta(m.id, i)">
-                    ✖
-                  </button>
-                </div>
+                <span> ⚖ {{ c.peso }} kg </span>
+
+                <span> 📅 {{ c.fecha }} </span>
               </div>
 
-              <ng-template #sinConsultas>
-                <p>No hay consultas registradas</p>
-              </ng-template>
+              <button mat-mini-button color="warn" (click)="eliminarConsulta(m.id, i)">✖</button>
             </div>
+          </div>
 
-            <div class="consulta-form">
-              <input #motivoConsulta placeholder="Motivo" />
+          <ng-template #sinConsultas>
+            <p>No hay consultas registradas</p>
+          </ng-template>
 
-              <input #diagnosticoConsulta placeholder="Diagnóstico" />
+          <div class="consulta-form">
+            <input #motivoConsulta placeholder="Motivo" />
 
-              <input #pesoConsulta type="number" placeholder="Peso" />
+            <input #diagnosticoConsulta placeholder="Diagnóstico" />
 
-              <input #fechaConsulta type="date" />
+            <input #pesoConsulta type="number" placeholder="Peso" />
 
-              <button
-                mat-raised-button
-                color="primary"
-                (click)="
-                  agregarConsulta(
-                    m.id,
-                    motivoConsulta.value,
-                    diagnosticoConsulta.value,
-                    pesoConsulta.value,
-                    fechaConsulta.value
-                  )
-                "
-              >
-                Agregar consulta
-              </button>
-            </div>
+            <input #fechaConsulta type="date" />
+
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="
+                agregarConsulta(
+                  m.id,
+                  motivoConsulta.value,
+                  diagnosticoConsulta.value,
+                  pesoConsulta.value,
+                  fechaConsulta.value
+                )
+              "
+            >
+              Agregar consulta
+            </button>
           </div>
         </div>
       </ng-template>

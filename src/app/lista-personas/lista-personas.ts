@@ -6,6 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-persona-list',
@@ -17,6 +18,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatButtonModule,
     MatInputModule,
     MatFormFieldModule,
+    MatExpansionModule,
   ],
   templateUrl: './lista-personas.html',
   styleUrl: './lista-personas.css',
@@ -25,6 +27,8 @@ export class PersonaList {
   filtro = '';
 
   mascotaEditandoId: number | null = null;
+  historialAbiertoId: number | null = null;
+  consultasAbiertasId: number | null = null;
 
   constructor(public personaService: PersonaService) {}
 
@@ -36,6 +40,14 @@ export class PersonaList {
     this.personaService.editar(mascota.id, mascota);
 
     this.mascotaEditandoId = null;
+  }
+
+  toggleHistorial(id: number) {
+    this.historialAbiertoId = this.historialAbiertoId === id ? null : id;
+  }
+
+  toggleConsultas(id: number) {
+    this.consultasAbiertasId = this.consultasAbiertasId === id ? null : id;
   }
 
   agregarVacuna(
