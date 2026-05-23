@@ -1,6 +1,8 @@
 <mat-card>
   <h2>🐾 Mascotas Registradas</h2>
 
+  <!-- DASHBOARD -->
+
   <div class="dashboard">
     <div class="dashboard-card mascotas">
       <h3>
@@ -12,16 +14,7 @@
 
     <div class="dashboard-card dashboard-vacunas">
       <h3>
-        {{
-          personaService
-            .mascotas()
-
-            .reduce(
-              (total, m) => total + m.vacunas.length,
-
-              0
-            )
-        }}
+        {{ personaService.mascotas().reduce((total, m) => total + m.vacunas.length, 0) }}
       </h3>
 
       <p>Vacunas</p>
@@ -29,16 +22,7 @@
 
     <div class="dashboard-card consultas">
       <h3>
-        {{
-          personaService
-            .mascotas()
-
-            .reduce(
-              (total, m) => total + m.consultas.length,
-
-              0
-            )
-        }}
+        {{ personaService.mascotas().reduce((total, m) => total + m.consultas.length, 0) }}
       </h3>
 
       <p>Consultas</p>
@@ -46,23 +30,22 @@
 
     <div class="dashboard-card alertas">
       <h3>
-        {{
-          personaService
-            .mascotas()
-
-            .filter((m) => m.vacunas.length === 0).length
-        }}
+        {{ personaService.mascotas().filter((m) => m.vacunas.length === 0).length }}
       </h3>
 
       <p>Sin vacunas</p>
     </div>
   </div>
 
-  <mat-form-field appearance="outline">
+  <!-- BUSCADOR -->
+
+  <mat-form-field appearance="outline" class="buscador">
     <mat-label>Buscar mascota</mat-label>
 
-    <input matInput [(ngModel)]="filtro" />
+    <input matInput [(ngModel)]="filtro" placeholder="Ej: Firulais" />
   </mat-form-field>
+
+  <!-- CARDS -->
 
   <div class="cards-mascotas">
     <mat-card
@@ -73,7 +56,7 @@
           .filter((m) => m.nombre.toLowerCase().includes(filtro.toLowerCase()))
       "
     >
-      <img class="pet-image" [src]="m.imagen" alt="mascota" />
+      <!-- EDITAR -->
 
       <div *ngIf="mascotaEditandoId === m.id; else vistaNormal">
         <mat-form-field appearance="outline">
@@ -112,64 +95,81 @@
       <!-- VISTA NORMAL -->
 
       <ng-template #vistaNormal>
-        <h3>🐶 {{ m.nombre }}</h3>
+        <div class="pet-modern-card">
+          <!-- BANNER -->
 
-        <p>
-          <strong>Especie:</strong>
-          {{ m.especie }}
-        </p>
+          <div class="pet-banner"></div>
 
-        <p>
-          <strong>Raza:</strong>
-          {{ m.raza }}
-        </p>
+          <!-- FOTO -->
 
-        <p>
-          <strong>Edad:</strong>
-          {{ m.edad }} años
-        </p>
+          <div class="pet-avatar-container">
+            <img class="pet-avatar" [src]="m.imagen" alt="mascota" />
+          </div>
 
-        <p>
-          <strong>Dueño:</strong>
-          {{ m.duenio }}
-        </p>
+          <!-- CONTENIDO -->
 
-        <div class="proxima-vacuna">
-          <span> ⏰ Próxima vacuna: </span>
+          <div class="pet-content">
+            <h2 class="pet-modern-name">
+              {{ m.nombre }}
+            </h2>
 
-          <strong>
-            {{ m.vacunas.length > 0 ? 'En 30 días' : 'Pendiente' }}
-          </strong>
-        </div>
+            <!-- TAGS -->
 
-        <!-- BOTONES -->
+            <div class="pet-badges">
+              <span class="badge especie">
+                {{ m.especie }}
+              </span>
 
-        <div class="botones-panel">
-          <button mat-raised-button color="accent" (click)="toggleHistorial(m.id)">
-            🩺 Historial Médico
-          </button>
+              <span class="badge raza">
+                {{ m.raza }}
+              </span>
 
-          <button mat-raised-button color="primary" (click)="toggleConsultas(m.id)">
-            📋 Consultas
-          </button>
+              <span class="badge edad"> {{ m.edad }} años </span>
+            </div>
+
+            <!-- DUEÑO -->
+
+            <div class="pet-owner">
+              <span> 👤 {{ m.duenio }} </span>
+            </div>
+
+            <!-- ESTADO -->
+
+            <div
+              class="status-box"
+              [class.ok]="m.vacunas.length > 0"
+              [class.alert]="m.vacunas.length === 0"
+            >
+              <span *ngIf="m.vacunas.length > 0"> 🟢 Vacunas al día </span>
+
+              <span *ngIf="m.vacunas.length === 0"> 🔴 Sin vacunas </span>
+            </div>
+
+            <!-- BOTONES -->
+
+            <div class="panel-buttons">
+              <button mat-raised-button color="primary" (click)="toggleHistorial(m.id)">
+                🩺 Historial
+              </button>
+
+              <button mat-raised-button color="accent" (click)="toggleConsultas(m.id)">
+                📋 Consultas
+              </button>
+            </div>
+          </div>
         </div>
 
         <!-- HISTORIAL -->
 
         <div class="medical-section" *ngIf="historialAbiertoId === m.id">
-          <h3 class="medical-title">💉 Vacunas</h3>
+          <h3 class="medical-title">💉 Historial Médico</h3>
 
           <div *ngIf="m.vacunas && m.vacunas.length > 0; else sinVacunas">
-            <div class="vacuna-item" *ngFor="let v of m.vacunas; let i = index">
+            <div *ngFor="let v of m.vacunas; let i = index" class="vacuna-item">
               <div class="vacuna-info">
                 <p>💉 {{ v.nombre }}</p>
 
                 <span> 📅 {{ v.fecha }} </span>
-
-                <span class="proxima-vacuna">
-                  🔔 Próxima dosis:
-                  {{ v.proximaDosis }}
-                </span>
               </div>
 
               <button mat-mini-button color="warn" (click)="confirmarEliminarVacuna(m.id, i)">
@@ -181,6 +181,8 @@
           <ng-template #sinVacunas>
             <p>No tiene vacunas registradas</p>
           </ng-template>
+
+          <!-- FORM VACUNA -->
 
           <div class="vacuna-form">
             <input #nombreVacuna placeholder="Vacuna" />
@@ -200,16 +202,16 @@
         <!-- CONSULTAS -->
 
         <div class="medical-section" *ngIf="consultasAbiertasId === m.id">
-          <h3 class="medical-title">🩺 Consultas Médicas</h3>
+          <h3 class="medical-title">🩺 Consultas</h3>
 
           <div *ngIf="m.consultas && m.consultas.length > 0; else sinConsultas">
-            <div class="consulta-item" *ngFor="let c of m.consultas; let i = index">
+            <div *ngFor="let c of m.consultas; let i = index" class="consulta-item">
               <div class="consulta-info">
                 <p>🩺 {{ c.motivo }}</p>
 
                 <span> 📋 {{ c.diagnostico }} </span>
 
-                <span> ⚖ {{ c.peso }} kg </span>
+                <span> ⚖ {{ c.peso }}kg </span>
 
                 <span> 📅 {{ c.fecha }} </span>
               </div>
@@ -221,6 +223,8 @@
           <ng-template #sinConsultas>
             <p>No hay consultas registradas</p>
           </ng-template>
+
+          <!-- FORM CONSULTA -->
 
           <div class="consulta-form">
             <input #motivoConsulta placeholder="Motivo" />
@@ -249,6 +253,8 @@
           </div>
         </div>
       </ng-template>
+
+      <!-- ACCIONES -->
 
       <div class="acciones">
         <button mat-raised-button color="primary" (click)="editar(m)">Editar</button>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef } from '@angular/core';
 import { PersonaService } from '../services/persona.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';

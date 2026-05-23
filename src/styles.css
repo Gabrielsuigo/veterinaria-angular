@@ -2,11 +2,20 @@
 
 body {
   margin: 0;
-  font-family: Roboto, sans-serif;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
 
+  font-family: 'Inter', sans-serif;
+
+  min-height: 100vh;
+
+  overflow-x: hidden;
+
+  background:
+    radial-gradient(circle at top left, #312e81 0%, transparent 30%),
+    radial-gradient(circle at top right, #0f172a 0%, transparent 25%),
+    linear-gradient(135deg, #0f172a, #111827);
+
+  color: white;
+}
 /* contenedor */
 .container {
   max-width: 1000px;
@@ -21,7 +30,7 @@ mat-toolbar {
 
   color: #1e293b;
 
-  border-bottom: 1px solid rgba(0,0,0,0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .toolbar {
@@ -45,15 +54,25 @@ a.active {
 
 /* cards */
 mat-card {
-  border-radius: 20px !important;
+  border-radius: 28px !important;
+
   padding: 25px;
-  background: #ffffff;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-  transition: transform 0.2s ease;
+
+  background: rgba(255, 255, 255, 0.06) !important;
+
+  backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+
+  transition: 0.3s ease;
 }
 
 mat-card:hover {
-  transform: scale(1.02);
+  transform: translateY(-6px);
+
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.45);
 }
 
 /* botones */
@@ -75,7 +94,8 @@ button {
   color: #333;
 }
 
-.tabla td, .tabla th {
+.tabla td,
+.tabla th {
   padding: 12px;
 }
 
@@ -89,7 +109,7 @@ button {
   gap: 30px;
 
   background:
-    linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
+    linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
     url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f');
 
   background-size: cover;
@@ -113,4 +133,3 @@ button {
   text-align: center;
   background: #f1f3f5;
 }
-
