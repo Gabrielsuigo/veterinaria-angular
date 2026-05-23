@@ -132,6 +132,7 @@ mat-form-field {
   grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
 
   gap: 30px;
+  margin-top: 35px;
 }
 
 /* =========================
@@ -155,9 +156,11 @@ mat-form-field {
 }
 
 .pet-card:hover {
-  transform: translateY(-10px);
+  transform: translateY(-12px) scale(1.015);
 
-  box-shadow: 0 28px 55px rgba(15, 23, 42, 0.16) !important;
+  box-shadow:
+    0 30px 60px rgba(15, 23, 42, 0.18),
+    0 0 40px rgba(99, 102, 241, 0.18) !important;
 }
 
 /* =========================
@@ -166,6 +169,14 @@ mat-form-field {
 
 .pet-modern-card {
   position: relative;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(circle at top right, rgba(99, 102, 241, 0.12), transparent 35%),
+    radial-gradient(circle at bottom left, rgba(6, 182, 212, 0.1), transparent 30%);
+
+  transition: 0.35s ease;
 }
 
 /* BANNER */
@@ -447,4 +458,136 @@ button[mat-raised-button]:hover {
 
     transform: translateY(0);
   }
+}
+
+/* =========================================
+   EFECTOS PREMIUM
+========================================= */
+
+.pet-card::before {
+  content: '';
+
+  position: absolute;
+
+  inset: 0;
+
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent 40%);
+
+  pointer-events: none;
+}
+
+.pet-banner::after {
+  content: '';
+
+  position: absolute;
+
+  inset: 0;
+
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.18));
+}
+
+/* GLOW AVATAR */
+
+.pet-avatar {
+  transition: 0.35s ease;
+}
+
+.pet-card:hover .pet-avatar {
+  transform: scale(1.06);
+
+  box-shadow: 0 0 35px rgba(99, 102, 241, 0.55);
+}
+
+/* NOMBRE */
+
+.pet-modern-name {
+  letter-spacing: -1px;
+
+  position: relative;
+}
+
+.pet-modern-name::after {
+  content: '';
+
+  width: 70px;
+
+  height: 4px;
+
+  border-radius: 999px;
+
+  background: linear-gradient(90deg, #6366f1, #06b6d4);
+
+  display: block;
+
+  margin: 12px auto 0;
+}
+
+/* BOTONES MODERNOS */
+
+button[mat-raised-button] {
+  overflow: hidden;
+
+  position: relative;
+}
+
+button[mat-raised-button]::before {
+  content: '';
+
+  position: absolute;
+
+  top: 0;
+
+  left: -120%;
+
+  width: 100%;
+
+  height: 100%;
+
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+
+  transition: 0.5s;
+}
+
+button[mat-raised-button]:hover::before {
+  left: 120%;
+}
+
+/* HISTORIAL */
+
+.medical-section {
+  backdrop-filter: blur(14px);
+
+  background: rgba(255, 255, 255, 0.72);
+}
+
+/* ITEMS */
+
+.vacuna-item,
+.consulta-item {
+  transition: 0.25s ease;
+}
+
+.vacuna-item:hover,
+.consulta-item:hover {
+  transform: translateX(6px);
+
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+}
+
+/* DASHBOARD PREMIUM */
+
+.dashboard-card {
+  backdrop-filter: blur(18px);
+}
+
+.dashboard-card::after {
+  content: '';
+
+  position: absolute;
+
+  inset: 0;
+
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), transparent);
+
+  pointer-events: none;
 }
