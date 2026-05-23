@@ -1,25 +1,21 @@
-<mat-toolbar class="toolbar">
+<mat-toolbar>
+  <div class="logo">
+    <div class="logo-icon">🐾</div>
 
-  <span class="logo">
-    🐾 VetSystem
-  </span>
+    <span> VetSystem </span>
+  </div>
 
   <span class="spacer"></span>
 
-  <a
-    mat-button
-    routerLink="/"
-  >
-    Inicio
-  </a>
+  <div class="nav-links">
+    <a routerLink="/">
+      <span> Inicio </span>
+    </a>
 
-  <a
-    mat-button
-    routerLink="/mascotas"
-  >
-    Mascotas
-  </a>
-
+    <a routerLink="/mascotas">
+      <span> Mascotas </span>
+    </a>
+  </div>
 </mat-toolbar>
 
 <div class="container">

@@ -24,34 +24,162 @@ body {
 }
 
 /* navbar */
+
 mat-toolbar {
-  background: rgba(255, 255, 255, 0.65) !important;
-  backdrop-filter: blur(12px);
-
-  color: #1e293b;
-
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-.toolbar {
   position: sticky;
+
   top: 0;
-  z-index: 1000;
+
+  z-index: 9999;
+
+  height: 78px;
+
+  padding: 0 35px !important;
+
+  display: flex;
+
+  align-items: center;
+
+  background: rgba(15, 23, 42, 0.72) !important;
+
+  backdrop-filter: blur(18px);
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
 }
+
+/* CONTENEDOR LOGO */
 
 .logo {
-  font-weight: bold;
-  font-size: 18px;
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  font-size: 24px;
+
+  font-weight: 800;
+
+  color: white;
+
+  letter-spacing: -0.5px;
 }
+
+/* ICONO */
+
+.logo-icon {
+  width: 48px;
+
+  height: 48px;
+
+  border-radius: 14px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 24px;
+
+  background: linear-gradient(135deg, #6366f1, #06b6d4);
+
+  box-shadow:
+    0 10px 25px rgba(99, 102, 241, 0.4),
+    0 0 30px rgba(6, 182, 212, 0.25);
+}
+
+/* SPACER */
 
 .spacer {
   flex: 1 1 auto;
 }
 
-a.active {
-  border-bottom: 2px solid #333;
+/* LINKS */
+
+.nav-links {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
 }
 
+.nav-links a {
+  position: relative;
+
+  padding: 12px 20px;
+
+  border-radius: 14px;
+
+  text-decoration: none;
+
+  color: rgba(255, 255, 255, 0.9);
+
+  font-weight: 600;
+
+  transition: 0.3s ease;
+
+  overflow: hidden;
+}
+
+/* EFECTO HOVER */
+
+.nav-links a::before {
+  content: '';
+
+  position: absolute;
+
+  inset: 0;
+
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.25), rgba(6, 182, 212, 0.25));
+
+  opacity: 0;
+
+  transition: 0.3s ease;
+}
+
+.nav-links a:hover::before {
+  opacity: 1;
+}
+
+.nav-links a:hover {
+  transform: translateY(-2px);
+
+  color: white;
+}
+
+/* TEXTO ENCIMA */
+
+.nav-links a span {
+  position: relative;
+
+  z-index: 2;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+  mat-toolbar {
+    padding: 0 15px !important;
+  }
+
+  .logo {
+    font-size: 18px;
+  }
+
+  .nav-links {
+    gap: 6px;
+  }
+
+  .nav-links a {
+    padding: 10px 14px;
+
+    font-size: 14px;
+  }
+}
 /* cards */
 mat-card {
   border-radius: 28px !important;
