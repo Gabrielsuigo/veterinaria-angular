@@ -1,23 +1,36 @@
-<mat-toolbar>
-  <div class="logo">
-    <div class="logo-icon">🐾</div>
+<div class="layout">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-top">
+      <div class="logo-box">🐾</div>
 
-    <span> VetSystem </span>
-  </div>
+      <div>
+        <h2>VetSystem</h2>
+        <span>Panel Veterinario</span>
+      </div>
+    </div>
 
-  <span class="spacer"></span>
+    <nav class="menu">
+      <a mat-button routerLink="/"> 🏠 Inicio </a>
 
-  <div class="nav-links">
-    <a routerLink="/">
-      <span> Inicio </span>
-    </a>
+      <a mat-button routerLink="/mascotas"> 🐶 Mascotas </a>
 
-    <a routerLink="/mascotas">
-      <span> Mascotas </span>
-    </a>
-  </div>
-</mat-toolbar>
+      <a mat-button> 💉 Historial </a>
 
-<div class="container">
-  <router-outlet></router-outlet>
+      <a mat-button> 📅 Turnos </a>
+
+      <a mat-button> 💊 Vacunas </a>
+
+      <a mat-button> 📊 Reportes </a>
+
+      <a mat-button> ⚙️ Configuración </a>
+    </nav>
+
+    <div class="sidebar-footer">VetSystem v1.0</div>
+  </aside>
+
+  <!-- CONTENIDO -->
+  <main class="content">
+    <router-outlet></router-outlet>
+  </main>
 </div>
