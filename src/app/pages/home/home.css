@@ -3,21 +3,19 @@
 
   width: 100%;
 
-  padding: 60px 20px;
+  padding: 40px;
+
+  box-sizing: border-box;
 
   display: flex;
 
   flex-direction: column;
 
-  justify-content: center;
-
-  align-items: center;
-
-  gap: 40px;
+  gap: 35px;
 
   background:
     linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
-    url('https://images.unsplash.com/photo-1450778869180-41d0601e046e?q=80&w=2070&auto=format&fit=crop');
+    url('https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?q=80&w=2070&auto=format&fit=crop');
 
   background-size: cover;
 
@@ -25,29 +23,47 @@
 
   background-repeat: no-repeat;
 
-  background-attachment: fixed;
-
   color: white;
 }
 .hero {
-  text-align: center;
-  padding: 60px 20px;
-  border-radius: 20px;
-  background: transparent !important;
-  backdrop-filter: blur(10px);
-  margin-bottom: 40px;
+  width: 100%;
+  max-width: 950px;
 
-  animation: fadeIn 1s ease-in-out;
+  margin: 0 auto;
+
+  padding: 45px 50px;
+
+  border-radius: 28px;
+
+  background: rgba(15, 23, 42, 0.55);
+
+  backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+
+  text-align: center;
+
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
 }
 
 .hero h1 {
-  font-size: 40px;
-  margin-bottom: 10px;
+  font-size: 52px;
+
+  font-weight: 800;
+
+  margin-bottom: 18px;
+
+  letter-spacing: -1px;
 }
 
 .hero p {
   font-size: 18px;
-  margin-bottom: 20px;
+
+  line-height: 1.7;
+
+  color: rgba(255, 255, 255, 0.82);
+
+  margin-bottom: 28px;
 }
 
 @keyframes fadeIn {
@@ -62,51 +78,53 @@
 }
 
 .cards-home {
+  width: 100%;
+
+  max-width: 1400px;
+
+  margin: 0 auto;
+
   display: grid;
 
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
 
-  gap: 20px;
+  gap: 28px;
 }
 
 .cards-home .glass-card {
-  position: relative;
-
-  overflow: hidden;
-
-  padding: 28px;
+  padding: 30px;
 
   border-radius: 24px;
 
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(15, 23, 42, 0.62);
 
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(10px);
 
   color: white;
 
+  transition: 0.25s ease;
+
+  min-height: 220px;
+
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
-
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-
-  cursor: pointer;
-
-  min-height: 280px;
 }
 
 .cards-home .glass-card:hover {
-  transform: translateY(-10px) scale(1.02);
+  transform: translateY(-6px);
 
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  border-color: rgba(99, 102, 241, 0.35);
+
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.22);
 }
 
 .cards-home .glass-card h2 {
-  font-size: 28px;
+  font-size: 30px;
 
-  margin-bottom: 20px;
+  font-weight: 700;
+
+  margin-bottom: 18px;
 }
 
 .cards-home .glass-card h3 {
@@ -116,9 +134,11 @@
 }
 
 .cards-home .glass-card p {
-  color: rgba(255, 255, 255, 0.92);
+  color: rgba(255, 255, 255, 0.74);
 
-  line-height: 1.5;
+  line-height: 1.7;
+
+  font-size: 15px;
 }
 
 .medical-home-item {
@@ -133,14 +153,14 @@
   margin-top: 14px;
 }
 
-.cards-home {
-  width: 100%;
+@media (max-width: 1200px) {
+  .cards-home {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 
-  max-width: 1400px;
-
-  display: grid;
-
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-
-  gap: 30px;
+@media (max-width: 768px) {
+  .cards-home {
+    grid-template-columns: 1fr;
+  }
 }
