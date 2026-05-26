@@ -1,34 +1,11 @@
 import { Injectable, signal } from '@angular/core';
 
-export interface Vacuna {
-  nombre: string;
-  fecha: string;
-  proximaDosis?: string;
-}
-
-export interface Consulta {
-  motivo: string;
-  diagnostico: string;
-  peso: number;
-  fecha: string;
-}
-
-export interface Mascota {
-  id: number;
-  nombre: string;
-  especie: string;
-  raza: string;
-  edad: number;
-  duenio: string;
-  imagen: string;
-  vacunas: Vacuna[];
-  consultas: Consulta[];
-}
+import { Mascota, Vacuna, Consulta } from '../../models/mascota.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class PersonaService {
+export class MascotaService {
   mascotas = signal<Mascota[]>(this.cargar());
   mascotaEditando = signal<Mascota | null>(null);
 

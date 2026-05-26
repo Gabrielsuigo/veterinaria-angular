@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PersonaService } from '../../services/persona.service';
+import { MascotaService } from '../../core/services/mascota.service';
 
 @Component({
   selector: 'app-historial',
@@ -10,5 +10,6 @@ import { PersonaService } from '../../services/persona.service';
   styleUrls: ['./historial.css'],
 })
 export class Historial {
-  constructor(public personaService: PersonaService) {}
+  mascotas: any;
+  constructor(public mascotaService: MascotaService) {}
 }

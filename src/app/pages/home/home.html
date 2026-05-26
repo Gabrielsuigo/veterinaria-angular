@@ -1,29 +1,65 @@
 <div class="home">
-  <mat-card class="hero">
-    <h1>🐾 VetSystem</h1>
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Dashboard Veterinario</h1>
 
-    <p>Gestioná mascotas, dueños y registros veterinarios de forma moderna y profesional.</p>
+    <p>Gestión completa de mascotas, vacunas y consultas médicas.</p>
+  </section>
 
-    <button mat-raised-button color="primary" routerLink="/mascotas">Ver Mascotas</button>
-  </mat-card>
+  <!-- CARDS -->
+  <section class="dashboard-grid">
+    <div class="dashboard-card">
+      <div class="card-icon">
+        <mat-icon>pets</mat-icon>
+      </div>
 
-  <div class="cards-home">
-    <div class="glass-card" routerLink="/mascotas">
-      <h2>🐶 Registro de Mascotas</h2>
-
-      <p>Registrá perros, gatos y otras mascotas fácilmente.</p>
+      <div>
+        <h2>{{ totalMascotas() }}</h2>
+        <p>Mascotas registradas</p>
+      </div>
     </div>
 
-    <div class="glass-card" routerLink="/historial">
-      <h2>💉 Historial Médico</h2>
+    <div class="dashboard-card">
+      <div class="card-icon">
+        <mat-icon>vaccines</mat-icon>
+      </div>
 
-      <p>Guardá vacunas, controles y tratamientos.</p>
+      <div>
+        <h2>{{ totalVacunas() }}</h2>
+        <p>Vacunas aplicadas</p>
+      </div>
     </div>
 
-    <div class="glass-card" routerLink="/turnos">
-      <h2>📅 Gestión de Turnos</h2>
+    <div class="dashboard-card">
+      <div class="card-icon">
+        <mat-icon>medical_services</mat-icon>
+      </div>
 
-      <p>Organizá consultas y seguimientos veterinarios.</p>
+      <div>
+        <h2>{{ totalConsultas() }}</h2>
+        <p>Consultas médicas</p>
+      </div>
     </div>
-  </div>
+  </section>
+
+  <!-- ULTIMAS MASCOTAS -->
+  <section class="recent-section">
+    <h2>Últimas mascotas</h2>
+
+    <div class="recent-grid">
+      @for (mascota of mascotasRecientes(); track mascota.id) {
+        <div class="recent-card">
+          <img [src]="mascota.imagen" [alt]="mascota.nombre" />
+
+          <div class="recent-info">
+            <h3>{{ mascota.nombre }}</h3>
+
+            <p>{{ mascota.raza }}</p>
+
+            <span>{{ mascota.duenio }}</span>
+          </div>
+        </div>
+      }
+    </div>
+  </section>
 </div>

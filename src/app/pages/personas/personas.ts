@@ -2,9 +2,7 @@ import { Component } from '@angular/core';
 import { PersonaForm } from '../../components/persona-form/persona-form';
 import { PersonaList } from '../../lista-personas/lista-personas';
 import { MatCardModule } from '@angular/material/card';
-import { PersonaService } from '../../services/persona.service';
-
-
+import { MascotaService } from '../../core/services/mascota.service';
 
 @Component({
   selector: 'app-mascotas',
@@ -13,6 +11,5 @@ import { PersonaService } from '../../services/persona.service';
   templateUrl: './personas.html',
 })
 export class Mascotas {
-    constructor(public personaService: PersonaService) {}
-
+  constructor(public personaService: MascotaService) {}
 }

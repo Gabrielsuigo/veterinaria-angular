@@ -1,7 +1,7 @@
 <div class="medical-card">
   <h2 class="medical-home-title">💉 Historial Médico</h2>
 
-  <div class="medical-home-item" *ngFor="let mascota of personaService.mascotas().slice(0, 2)">
+  <div class="medical-home-item" *ngFor="let mascota of mascotas?.slice(0, 2)">
     <h3>🐶 {{ mascota.nombre }}</h3>
 
     <p *ngIf="mascota.vacunas.length > 0">

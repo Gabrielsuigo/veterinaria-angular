@@ -1,6 +1,6 @@
 import { Component, effect, inject, Injector } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { PersonaService } from '../../services/persona.service';
+import { MascotaService } from '../../core/services/mascota.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -33,9 +33,9 @@ export class PersonaForm {
   mascotaId: number | null = null;
   injector = inject(Injector);
 
-  constructor(private personaService: PersonaService) {
+  constructor(private mascotaService: MascotaService) {
     effect(() => {
-      const mascota = this.personaService.mascotaEditando();
+      const mascota = this.mascotaService.mascotaEditando();
 
       if (mascota) {
         this.editando = true;
@@ -92,17 +92,17 @@ export class PersonaForm {
     };
 
     if (this.editando) {
-      const mascotaActual = this.personaService.mascotaEditando();
+      const mascotaActual = this.mascotaService.mascotaEditando();
 
       if (mascotaActual) {
-        this.personaService.editar(mascotaActual.id, mascota);
+        this.mascotaService.editar(mascotaActual.id, mascota);
       }
 
       this.editando = false;
 
-      this.personaService.mascotaEditando.set(null);
+      this.mascotaService.mascotaEditando.set(null);
     } else {
-      this.personaService.agregar(mascota);
+      this.mascotaService.agregar(mascota);
     }
 
     this.nombre = '';
