@@ -48,17 +48,7 @@
 
     <div class="recent-grid">
       @for (mascota of mascotasRecientes(); track mascota.id) {
-        <div class="recent-card">
-          <img [src]="mascota.imagen" [alt]="mascota.nombre" />
-
-          <div class="recent-info">
-            <h3>{{ mascota.nombre }}</h3>
-
-            <p>{{ mascota.raza }}</p>
-
-            <span>{{ mascota.duenio }}</span>
-          </div>
-        </div>
+        <app-mascota-card [mascota]="mascota"> </app-mascota-card>
       }
     </div>
   </section>

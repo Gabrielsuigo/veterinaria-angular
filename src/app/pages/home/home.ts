@@ -3,6 +3,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import { MascotaCardComponent } from '../../shared/components/mascota-card/mascota-card';
 
 import { MascotaService } from '../../core/services/mascota.service';
 
@@ -11,7 +12,7 @@ import { MascotaService } from '../../core/services/mascota.service';
 
   standalone: true,
 
-  imports: [MatCardModule, MatButtonModule, RouterModule, MatIconModule],
+  imports: [MatCardModule, MatButtonModule, RouterModule, MatIconModule, MascotaCardComponent],
 
   templateUrl: './home.html',
 

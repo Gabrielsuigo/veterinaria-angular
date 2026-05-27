@@ -1,0 +1,29 @@
+<a class="mascota-link" [routerLink]="['/mascotas', mascota.id]">
+  <div class="mascota-card">
+    <img [src]="mascota.imagen" [alt]="mascota.nombre" />
+
+    <div class="mascota-info">
+      <h3 class="nombre">
+        {{ mascota.nombre }}
+      </h3>
+
+      <p class="raza">
+        {{ mascota.raza }}
+      </p>
+
+      <span class="duenio"> Dueño: {{ mascota.duenio }} </span>
+
+      <div class="mascota-extra">
+        <div>
+          <mat-icon>vaccines</mat-icon>
+          {{ mascota.vacunas.length }}
+        </div>
+
+        <div>
+          <mat-icon>medical_services</mat-icon>
+          {{ mascota.consultas.length }}
+        </div>
+      </div>
+    </div>
+  </div>
+</a>

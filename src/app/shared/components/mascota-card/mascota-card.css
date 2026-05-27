@@ -1,0 +1,112 @@
+.mascota-card {
+  display: flex;
+
+  gap: 18px;
+
+  align-items: center;
+
+  padding: 20px;
+
+  border-radius: 22px;
+
+  background: rgba(15, 23, 42, 0.55);
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+
+  backdrop-filter: blur(10px);
+
+  transition: 0.25s ease;
+}
+
+.mascota-card:hover {
+  transform: translateY(-4px);
+
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.mascota-card img {
+  width: 90px;
+
+  height: 90px;
+
+  object-fit: cover;
+
+  border-radius: 18px;
+}
+
+.mascota-info {
+  flex: 1;
+}
+
+.mascota-info h3 {
+  margin: 0;
+
+  font-size: 22px;
+
+  font-weight: 700;
+}
+
+.mascota-info p {
+  margin: 6px 0;
+
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.mascota-info span {
+  font-size: 14px;
+
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.mascota-extra {
+  display: flex;
+
+  gap: 18px;
+
+  margin-top: 14px;
+}
+
+.mascota-extra div {
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  font-size: 14px;
+
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.mascota-extra mat-icon {
+  font-size: 18px;
+
+  width: 18px;
+
+  height: 18px;
+}
+.mascota-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.nombre {
+  font-size: 22px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 4px;
+}
+
+.raza {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 10px;
+  text-transform: capitalize;
+}
+
+.duenio {
+  font-size: 14px;
+  color: #8ab4ff;
+  font-weight: 500;
+}

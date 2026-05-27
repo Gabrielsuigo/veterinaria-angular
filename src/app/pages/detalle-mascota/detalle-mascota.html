@@ -1,0 +1,41 @@
+@if (mascota()) {
+  <div class="detalle-page">
+    <div class="detalle-card">
+      <img [src]="mascota()?.imagen" [alt]="mascota()?.nombre" />
+
+      <div class="detalle-info">
+        <h1>{{ mascota()?.nombre }}</h1>
+
+        <p>{{ mascota()?.raza }}</p>
+
+        <span>{{ mascota()?.duenio }}</span>
+
+        <div class="detalle-stats">
+          <div class="stat">
+            <mat-icon>vaccines</mat-icon>
+
+            <div>
+              <strong>
+                {{ mascota()?.vacunas?.length }}
+              </strong>
+
+              <p>Vacunas</p>
+            </div>
+          </div>
+
+          <div class="stat">
+            <mat-icon>medical_services</mat-icon>
+
+            <div>
+              <strong>
+                {{ mascota()?.consultas?.length }}
+              </strong>
+
+              <p>Consultas</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}
