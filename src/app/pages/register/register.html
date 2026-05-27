@@ -1,0 +1,50 @@
+<div class="register-page">
+  <div class="register-overlay"></div>
+
+  <div class="register-card">
+    <div class="register-header">
+      <h1>Crear cuenta</h1>
+
+      <p>Registrate para acceder al sistema veterinario</p>
+    </div>
+
+    <form class="register-form" (ngSubmit)="registrarse()">
+      <div class="form-group">
+        <label>Nombre</label>
+
+        <input type="text" [(ngModel)]="nombre" name="nombre" placeholder="Ingresá tu nombre" />
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+
+        <input type="email" [(ngModel)]="email" name="email" placeholder="Ingresá tu email" />
+      </div>
+
+      <div class="form-group">
+        <label>Contraseña</label>
+
+        <input
+          type="password"
+          [(ngModel)]="password"
+          name="password"
+          placeholder="Ingresá tu contraseña"
+        />
+      </div>
+
+      @if (error) {
+        <div class="error-message">
+          {{ error }}
+        </div>
+      }
+
+      <button type="submit">Crear cuenta</button>
+
+      <div class="login-link">
+        ¿Ya tenés cuenta?
+
+        <a routerLink="/login"> Iniciar sesión </a>
+      </div>
+    </form>
+  </div>
+</div>

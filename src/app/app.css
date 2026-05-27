@@ -1,24 +1,99 @@
-/* NAVBAR MODERNO */
-.navbar {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #0f172a;
+}
 
+/* LAYOUT GENERAL */
+.layout {
   display: flex;
-  align-items: center;
-  padding: 10px 30px;
+  min-height: 100vh;
+}
 
-  background: rgba(255, 255, 255, 0.9) !important;
+/* SIDEBAR */
+.sidebar {
+  width: 90px;
+  background: rgba(255, 255, 255, 0.95);
+
   backdrop-filter: blur(10px);
 
-  color: #1e293b; /* gris oscuro elegante */
-  border-bottom: 1px solid rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 20px 0;
+
+  position: fixed;
+
+  left: 0;
+  top: 0;
+  bottom: 0;
+
+  z-index: 1000;
 }
 
 /* LOGO */
+.sidebar-logo {
+  margin-bottom: 40px;
+}
+
+.logo-icon {
+  width: 56px;
+  height: 56px;
+
+  border-radius: 18px;
+
+  background: linear-gradient(135deg, #7c3aed, #3b82f6);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+}
+
+/* MENU SIDEBAR */
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.menu a {
+  color: #1e293b;
+}
+
+/* CONTENIDO */
+.content {
+  margin-left: 90px;
+  width: calc(100% - 90px);
+  min-height: 100vh;
+}
+
+/* NAVBAR */
+.navbar {
+  height: 70px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 30px;
+
+  background: rgba(255, 255, 255, 0.95);
+
+  backdrop-filter: blur(10px);
+
+  position: sticky;
+  top: 0;
+
+  z-index: 999;
+}
+
+/* LOGO NAVBAR */
 .logo {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: bold;
+  color: #111827;
 }
 
 /* ESPACIO */
@@ -26,28 +101,19 @@
   flex: 1;
 }
 
-/* MENU */
-.menu {
+/* BOTONES NAVBAR */
+.menu-top {
   display: flex;
+  align-items: center;
   gap: 15px;
 }
 
-/* LINKS */
-.menu a {
-  border-radius: 20px;
-  padding: 6px 16px;
-  transition: 0.3s;
-  color: white;
+.menu-top a,
+.menu-top button {
+  border-radius: 12px !important;
 }
 
-/* HOVER */
-.menu a:hover {
-  background: rgba(255,255,255,0.2);
-}
-
-/* ACTIVO */
-.menu a.active {
-  background: white;
-  color: black;
+.usuario {
   font-weight: bold;
+  color: #111827;
 }

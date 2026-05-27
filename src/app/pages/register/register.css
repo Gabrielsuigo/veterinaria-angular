@@ -1,4 +1,4 @@
-.login-page {
+.register-page {
   position: relative;
 
   min-height: 100vh;
@@ -12,7 +12,7 @@
   overflow: hidden;
 
   background:
-    linear-gradient(rgba(5, 10, 20, 0.75), rgba(5, 10, 20, 0.82)),
+    linear-gradient(rgba(5, 10, 20, 0.78), rgba(5, 10, 20, 0.82)),
     url('https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=2070&auto=format&fit=crop');
 
   background-size: cover;
@@ -20,7 +20,7 @@
   background-position: center;
 }
 
-.login-overlay {
+.register-overlay {
   position: absolute;
 
   inset: 0;
@@ -28,14 +28,14 @@
   backdrop-filter: blur(4px);
 }
 
-.login-card {
+.register-card {
   position: relative;
 
   z-index: 2;
 
   width: 100%;
 
-  max-width: 420px;
+  max-width: 460px;
 
   padding: 45px;
 
@@ -52,13 +52,13 @@
   color: white;
 }
 
-.login-header {
+.register-header {
   text-align: center;
 
   margin-bottom: 35px;
 }
 
-.login-header h1 {
+.register-header h1 {
   font-size: 42px;
 
   margin-bottom: 10px;
@@ -66,13 +66,13 @@
   font-weight: 800;
 }
 
-.login-header p {
+.register-header p {
   color: rgba(255, 255, 255, 0.7);
 
   line-height: 1.6;
 }
 
-.login-form {
+.register-form {
   display: flex;
 
   flex-direction: column;
@@ -124,7 +124,7 @@
   color: rgba(255, 255, 255, 0.45);
 }
 
-.login-form button {
+.register-form button {
   height: 58px;
 
   border: none;
@@ -144,8 +144,40 @@
   transition: 0.25s ease;
 }
 
-.login-form button:hover {
+.register-form button:hover {
   transform: translateY(-2px);
 
   box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+}
+
+.login-link {
+  text-align: center;
+
+  color: rgba(255, 255, 255, 0.7);
+
+  font-size: 14px;
+}
+
+.login-link a {
+  color: white;
+
+  text-decoration: none;
+
+  font-weight: 700;
+
+  margin-left: 5px;
+}
+
+.error-message {
+  background: rgba(255, 0, 0, 0.12);
+
+  border: 1px solid rgba(255, 0, 0, 0.25);
+
+  padding: 14px;
+
+  border-radius: 14px;
+
+  color: #ffb4b4;
+
+  font-size: 14px;
 }
