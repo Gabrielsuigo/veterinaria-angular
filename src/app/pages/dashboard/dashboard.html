@@ -1,0 +1,55 @@
+<div class="home">
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Dashboard Veterinario</h1>
+
+    <p>Gestión completa de mascotas, vacunas y consultas médicas.</p>
+  </section>
+
+  <!-- CARDS -->
+  <section class="dashboard-grid">
+    <div class="dashboard-card">
+      <div class="card-icon">
+        <mat-icon>pets</mat-icon>
+      </div>
+
+      <div>
+        <h2>{{ totalMascotas() }}</h2>
+        <p>Mascotas registradas</p>
+      </div>
+    </div>
+
+    <div class="dashboard-card">
+      <div class="card-icon">
+        <mat-icon>vaccines</mat-icon>
+      </div>
+
+      <div>
+        <h2>{{ totalVacunas() }}</h2>
+        <p>Vacunas aplicadas</p>
+      </div>
+    </div>
+
+    <div class="dashboard-card">
+      <div class="card-icon">
+        <mat-icon>medical_services</mat-icon>
+      </div>
+
+      <div>
+        <h2>{{ totalConsultas() }}</h2>
+        <p>Consultas médicas</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ULTIMAS MASCOTAS -->
+  <section class="recent-section">
+    <h2>Últimas mascotas</h2>
+
+    <div class="recent-grid">
+      @for (mascota of mascotasRecientes(); track mascota.id) {
+        <app-mascota-card [mascota]="mascota"> </app-mascota-card>
+      }
+    </div>
+  </section>
+</div>

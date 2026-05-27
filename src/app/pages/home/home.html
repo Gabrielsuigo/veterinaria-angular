@@ -1,55 +1,73 @@
-<div class="home">
+<div class="landing">
+
   <!-- HERO -->
-  <section class="hero">
-    <h1>Dashboard Veterinario</h1>
+  <section class="landing-hero">
 
-    <p>Gestión completa de mascotas, vacunas y consultas médicas.</p>
-  </section>
+    <div class="hero-content">
 
-  <!-- CARDS -->
-  <section class="dashboard-grid">
-    <div class="dashboard-card">
-      <div class="card-icon">
+      <span class="badge">
         <mat-icon>pets</mat-icon>
+        Plataforma Veterinaria Inteligente
+      </span>
+
+      <h1>
+        Gestión moderna para clínicas veterinarias
+      </h1>
+
+      <p>
+        Administrá mascotas, vacunas, consultas médicas y turnos
+        desde una sola plataforma elegante y profesional.
+      </p>
+
+      <div class="hero-actions">
+
+        <a routerLink="/dashboard" mat-raised-button>
+          Ingresar al Dashboard
+        </a>
+
+        <button mat-stroked-button>
+          Iniciar sesión
+        </button>
+
       </div>
 
-      <div>
-        <h2>{{ totalMascotas() }}</h2>
-        <p>Mascotas registradas</p>
-      </div>
     </div>
 
-    <div class="dashboard-card">
-      <div class="card-icon">
-        <mat-icon>vaccines</mat-icon>
-      </div>
-
-      <div>
-        <h2>{{ totalVacunas() }}</h2>
-        <p>Vacunas aplicadas</p>
-      </div>
-    </div>
-
-    <div class="dashboard-card">
-      <div class="card-icon">
-        <mat-icon>medical_services</mat-icon>
-      </div>
-
-      <div>
-        <h2>{{ totalConsultas() }}</h2>
-        <p>Consultas médicas</p>
-      </div>
-    </div>
   </section>
 
-  <!-- ULTIMAS MASCOTAS -->
-  <section class="recent-section">
-    <h2>Últimas mascotas</h2>
+  <!-- FEATURES -->
+  <section class="features">
 
-    <div class="recent-grid">
-      @for (mascota of mascotasRecientes(); track mascota.id) {
-        <app-mascota-card [mascota]="mascota"> </app-mascota-card>
-      }
+    <div class="feature-card">
+      <mat-icon>vaccines</mat-icon>
+
+      <h3>Control de Vacunas</h3>
+
+      <p>
+        Seguimiento completo de vacunas y próximas dosis.
+      </p>
     </div>
+
+    <div class="feature-card">
+      <mat-icon>medical_services</mat-icon>
+
+      <h3>Historial Clínico</h3>
+
+      <p>
+        Consultas médicas organizadas y accesibles.
+      </p>
+    </div>
+
+    <div class="feature-card">
+      <mat-icon>event</mat-icon>
+
+      <h3>Gestión de Turnos</h3>
+
+      <p>
+        Administración rápida de citas veterinarias.
+      </p>
+    </div>
+
   </section>
+
 </div>
