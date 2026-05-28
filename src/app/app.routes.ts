@@ -7,6 +7,7 @@ import { Historial } from './pages/historial/historial';
 import { Turnos } from './pages/turnos/turnos';
 import { DetalleMascota } from './pages/detalle-mascota/detalle-mascota';
 import { Dashboard } from './pages/dashboard/dashboard';
+import { authGuard } from './core/auth/guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -28,16 +29,19 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     component: Dashboard,
+    canActivate: [authGuard],
   },
 
   {
     path: 'mascotas',
     component: Mascotas,
+    canActivate: [authGuard],
   },
 
   {
     path: 'mascotas/:id',
     component: DetalleMascota,
+    canActivate: [authGuard],
   },
 
   {
