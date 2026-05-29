@@ -1,10 +1,10 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { RouterModule, RouterOutlet } from '@angular/router';
 
-import { Router, RouterModule, RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 
 import { AuthService } from './core/auth/services/auth.service';
 
@@ -13,7 +13,7 @@ import { AuthService } from './core/auth/services/auth.service';
 
   standalone: true,
 
-  imports: [RouterOutlet, RouterModule, MatToolbarModule, MatButtonModule, MatIconModule],
+  imports: [RouterOutlet, RouterModule, CommonModule, MatToolbarModule, MatButtonModule],
 
   templateUrl: './app.html',
 
@@ -22,15 +22,13 @@ import { AuthService } from './core/auth/services/auth.service';
 export class App {
   authService = inject(AuthService);
 
-  router = inject(Router);
+  sidebarOpen = false;
 
-  mostrarLayout = computed(() => {
-    return this.router.url !== '/login' && this.router.url !== '/register';
-  });
+  toggleSidebar() {
+    this.sidebarOpen = !this.sidebarOpen;
+  }
 
   logout() {
     this.authService.logout();
-
-    this.router.navigate(['/login']);
   }
 }
